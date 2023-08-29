@@ -8,6 +8,7 @@ import { formatCurrencyString } from "use-shopping-cart"
 
 import { SanityProduct } from "@/config/inventory"
 import { shimmer, toBase64 } from "@/lib/image"
+import productImage from '../public/products/canvas-tote-bag-1.jpg'
 
 interface Props {
   products: SanityProduct[]
@@ -35,7 +36,7 @@ export function ProductGrid({products} : Props) {
             <Image
             placeholder="blur"
             blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(225, 280))}`}
-              src={product.images[0]}
+              src={productImage}
               // src={urlForImage(product.images[0]).url()}
               alt={product.name}
               width={225}
