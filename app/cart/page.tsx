@@ -4,7 +4,7 @@ import { CartSummary } from "@/components/cart-summary"
 export default function Page() {
   return (
     <div>
-      <main className="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
+      <main className="max-w-2xl px-4 pt-16 pb-24 mx-auto sm:px-6 lg:max-w-7xl lg:px-8">
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
           Shopping Cart
         </h1>
@@ -15,8 +15,10 @@ export default function Page() {
               Items in your shopping cart
             </h2>
             {/* Cart Items */}
+            <CartItems />
           </section>
           {/* Cart Summary */}
+          <CartSummary />
         </form>
       </main>
     </div>
