@@ -16,10 +16,18 @@ import { CartItemsEmpty } from "@/components/cart-items-empty"
 
 export function CartItems() {
 
-  const { cartDetails } = useShoppingCart()
+  const { cartDetails, removeItem, setItemQuantity } = useShoppingCart()
   const CartItems = Object.entries(cartDetails!).map(([_, product]) => product)
+  const { toast } = useToast()
 
-  function removeCartItem() {}
+  function removeCartItem(product: Product) {
+    removeItem(product._id)
+    toast({
+      title: `${product.name} removed`,
+      description: "Product removed from cart",
+      variant: "destructive"
+    })
+  }
 
   if (CartItems.length === 0) return <CartItemsEmpty />
 
@@ -71,12 +79,14 @@ export function CartItems() {
                   min={1}
                   max={10}
                   value={product.quantity}
+                  onChange={event => setItemQuantity(product._id, Number(event.target.value))}
                 />
                 <div className="absolute top-0 right-0">
                   <Button
                     variant="ghost"
                     type="button"
                     className="inline-flex p-2 -mr-2"
+                    onClick={() => removeCartItem(product)}
                   >
                     <span className="sr-only">Remove</span>
                     <X className="w-5 h-5" aria-hidden="true" />
